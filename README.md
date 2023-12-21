@@ -1,1 +1,2 @@
 # OMU_GroupI
+2023年度先端ソフトウェア環境構築実践のGroupIのgit
