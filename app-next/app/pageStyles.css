@@ -1,0 +1,10 @@
+.mapContainer {
+    position: relative;
+}
+
+.mapButton {
+    position: absolute;
+    top: 10px;
+    left: 50px;
+    z-index: 1000;
+}

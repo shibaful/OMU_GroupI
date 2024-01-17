@@ -6,6 +6,7 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --button-bg-color: 30, 144, 255; /* 新しいボタンの背景色変数 */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -24,4 +25,13 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+button {
+  background-color: rgb(var(--button-bg-color)); /* ボタンのスタイルを追加 */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }

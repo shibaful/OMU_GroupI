@@ -1,4 +1,4 @@
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import React, { useEffect, useState } from 'react';
 import "leaflet/dist/leaflet.css";
 
@@ -7,7 +7,7 @@ import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
 
-//delete L.Icon.Default.prototype._getIconUrl;
+// Leafletアイコンの設定
 L.Icon.Default.mergeOptions({
   iconUrl: markerIcon.src,
   iconRetinaUrl: markerIcon2x.src,
@@ -16,16 +16,9 @@ L.Icon.Default.mergeOptions({
 
 const Map = () => {
   const [position, setPosition] = useState<[number, number] | null>(null);
-  let time = 0;
 
-  const tick = () => {
-    time = time + 1
-  }
-
-  React.useEffect(() => {
-    const timerId = setInterval(() => {
-      tick()
-    }, 1000)
+  useEffect(() => {
+    // 現在地を取得する関数
     const getLocation = () => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -34,23 +27,27 @@ const Map = () => {
             setPosition([latitude, longitude]);
           },
           (error) => {
-            console.error('Error getting location:', error.message);
-          }
+            console.error('Error getting location:', error);
+            setPosition([35.6895, 139.6917]); // エラー時にデフォルトの位置を設定
+          },
+          { enableHighAccuracy: true } // 高精度の位置情報を要求
         );
       } else {
         console.error('Geolocation is not supported by this browser.');
+        setPosition([35.6895, 139.6917]); // サポートされていない場合のデフォルト位置
       }
     };
 
     getLocation();
-    console.log(position);
-    return () => clearInterval(timerId)
-  },[time])
-  
+  }, []);
+
+  if (!position) {
+    return <p>Loading map...</p>; // 位置情報が取得されるまでローディングメッセージを表示
+  }
 
   return (
     <MapContainer
-      center={position || [0, 0]}
+      center={position}
       zoom={13}
       style={{ height: '100vh', width: '100%' }}
     >
@@ -58,7 +55,7 @@ const Map = () => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='© OpenStreetMap contributors'
       />
-      <Marker position={position || [0, 0]} />
+      <Marker position={position} />
     </MapContainer>
   );
 };
