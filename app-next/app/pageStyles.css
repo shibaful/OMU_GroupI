@@ -20,7 +20,17 @@
     font-size: 4em;
     height: 120px;
     width: 300px;
-    transform: translateX(calc(-50% - 155px))
+    transform: translateX(calc(-50% - 155px));
+    box-shadow: 0 7px rgba(0, 0, 255);
+}
+
+.mapButton.start:hover {
+    background-color: #1565C0;
+}
+
+.mapButton.start:active {
+    box-shadow: none;
+    bottom: 153px;
 }
 
 .mapButton.stop {
@@ -32,7 +42,17 @@
     font-size: 4em;
     height: 120px;
     width: 300px;
-    transform: translateX(calc(-50% - 155px))
+    transform: translateX(calc(-50% - 155px));
+    box-shadow: 0 7px #5a1813;
+}
+
+.mapButton.stop:hover {
+    background-color: #b71c1c;
+}
+
+.mapButton.stop:active {
+    box-shadow: none;
+    bottom: 153px;
 }
 
 .mapButton.info {
@@ -44,7 +64,17 @@
     font-size: 4em;
     height: 120px;
     width: 300px;
-    transform: translateX(calc(-50% + 155px))
+    transform: translateX(calc(-50% + 155px));
+    box-shadow: 0 7px #204921;
+}
+
+.mapButton.info:hover {
+    background-color: #388e3c;
+}
+
+.mapButton.info:active {
+    box-shadow: none;
+    bottom: 153px;
 }
 
 .mapButton.mapView {
@@ -56,7 +86,17 @@
     font-size: 4em;
     height: 120px;
     width: 300px;
-    transform: translateX(calc(-50% - 155px))
+    transform: translateX(calc(-50% - 155px));
+    box-shadow: 0 7px #5e5615;
+}
+
+.mapButton.mapView:hover {
+    background-color: #fbc02d;
+}
+
+.mapButton.mapView:active {
+    box-shadow: none;
+    bottom: 23px;
 }
 
 .mapButton.link {
@@ -68,5 +108,15 @@
     font-size: 4em;
     height: 120px;
     width: 300px;
-    transform: translateX(calc(-50% + 155px))
+    transform: translateX(calc(-50% + 155px));
+    box-shadow: 0 7px #3c0f44;
+}
+
+.mapButton.link:hover {
+    background-color: #7b1fa2;
+}
+
+.mapButton.link:active {
+    box-shadow: none;
+    bottom: 23px;
 }
