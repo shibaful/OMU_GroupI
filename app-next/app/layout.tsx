@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <header>ヘッダー</header> {/* ヘッダーを追加 */}
+        <header>アプリ名</header> {/* ヘッダーを追加 */}
         {children}
       </body>
     </html>
