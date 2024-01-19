@@ -1,7 +1,7 @@
 'use client'
 import dynamic from "next/dynamic";
-import React from "react";
-import './pageStyles.css'; // 既存のスタイルシート
+import React, { useState } from "react";
+import './pageStyles.css';
 
 function MapPage() {
     const Map = React.useMemo(
@@ -12,10 +12,28 @@ function MapPage() {
         []
     );
 
+    const [tracking, setTracking] = useState(false); // 追跡状態の管理
+
+    const handleStartTracking = () => {
+        setTracking(true);
+        // 追跡開始の処理
+    };
+
+    const handleStopTracking = () => {
+        setTracking(false);
+        // 追跡停止の処理
+    };
+
     return (
-        <div style={{ position: 'relative' }}>
-            <button className="mapButton">マップ1</button> {/* 既存のボタン */}
-            <button className="mapButton" style={{ top: '70px' }}>マップ2</button> {/* 新しいボタン */}
+        <div className="mapContainer">
+            {!tracking ? (
+                <button className="mapButton start" onClick={handleStartTracking}>追跡開始</button>
+            ) : (
+                <button className="mapButton stop" onClick={handleStopTracking}>追跡停止</button>
+            )}
+            <button className="mapButton info">古墳推定</button>
+            <button className="mapButton mapView">経路表示</button>
+            <button className="mapButton link">詳細情報</button>
             <Map />
         </div>
     );
