@@ -14,6 +14,5 @@ $ docker-compose up -d
 $ cd app-next
 $ npm install
 $ npm install leaflet react-leaflet @types/leaflet @types/react-leaflet
-$ npm install react react-dom
 $ npm run dev
 ```

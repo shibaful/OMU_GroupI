@@ -61,7 +61,7 @@ function MapPage() {
             )}
             <button className="mapButton info" onClick={openPopupDetail}>古墳推定</button>
             <button className="mapButton mapView">経路表示</button>
-            <button className="mapButton link" onClick={openPopupDetail}>詳細情報</button>
+            <button className="mapButton link" onClick={openPopupDetail}>古墳一覧</button>
             {isPopupDetailOpen && <PopupDetail onClose={closePopupDetail} />}
             {isPopupStopConfirmOpen && <PopupStopConfirm onClose={() => {closePopupStopConfirm(); handleStopTracking(); }} />}
             <Map />
