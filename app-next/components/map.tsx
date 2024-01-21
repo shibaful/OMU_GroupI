@@ -1,4 +1,4 @@
-import { MapContainer, Marker, TileLayer } from "react-leaflet";
+import { MapContainer, Marker, TileLayer, Polyline } from "react-leaflet";
 import React, { useEffect, useState } from 'react';
 import "leaflet/dist/leaflet.css";
 
@@ -6,6 +6,7 @@ import L from "leaflet";
 import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
+import { LatLngTuple } from 'leaflet';
 
 // Leafletアイコンの設定
 L.Icon.Default.mergeOptions({
@@ -14,7 +15,11 @@ L.Icon.Default.mergeOptions({
   shadowUrl: markerShadow.src,
 });
 
-const Map = () => {
+type MapProps = {
+  route?: LatLngTuple[];
+};
+
+const Map: React.FC<MapProps> = ({ route }) => {
   const [position, setPosition] = useState<[number, number] | null>(null);
 
   useEffect(() => {
@@ -56,6 +61,7 @@ const Map = () => {
         attribution='© OpenStreetMap contributors'
       />
       <Marker position={position} />
+      {route && <Polyline positions={route} color="red" />} {/* 経路の表示 */}
     </MapContainer>
   );
 };
