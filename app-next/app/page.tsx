@@ -1,7 +1,8 @@
 'use client'
 import dynamic from "next/dynamic";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './pageStyles.css';
+import { LatLngTuple } from 'leaflet';
 import PopupDetail from './popupDetail'
 import PopupStopConfirm from './popupStopConfirm'
 
@@ -16,13 +17,18 @@ function MapPage() {
 
 
     const [tracking, setTracking] = useState(false); // 追跡状態の管理
+    const [route, setRoute] = useState<LatLngTuple[]>([]); // 経路の座標
 
     const handleStartTracking = () => {
         setTracking(true);
         // 追跡開始の処理
     };
 
+
     const handleStopTracking = (stopTracking: boolean) => {
+        //setTracking(false);
+        // 追跡停止の処理
+        //setRoute([]); // 経路データをリセット
         setTracking(!stopTracking); // stopTrackingがtrueなら追跡停止
         closePopupStopConfirm(); // ポップアップを閉じる
     };
@@ -52,6 +58,23 @@ function MapPage() {
       // ポップアップを非表示
     };
 
+    useEffect(() => {
+        if (!tracking) return;
+
+        const watchId = navigator.geolocation.watchPosition(
+            (position) => {
+                const { latitude, longitude } = position.coords;
+                setRoute(prevRoute => [...prevRoute, [latitude, longitude]]);
+            },
+            (error) => {
+                console.error(error);
+            },
+            { enableHighAccuracy: true }
+        );
+
+        return () => navigator.geolocation.clearWatch(watchId);
+    }, [tracking]);
+
     return (
         <div className="mapContainer">
             {!tracking ? (
@@ -61,10 +84,8 @@ function MapPage() {
             )}
             <button className="mapButton info" onClick={openPopupDetail}>古墳推定</button>
             <button className="mapButton mapView">経路表示</button>
-            <button className="mapButton link" onClick={openPopupDetail}>古墳一覧</button>
-            {isPopupDetailOpen && <PopupDetail onClose={closePopupDetail} />}
-            {isPopupStopConfirmOpen && <PopupStopConfirm onClose={handleStopTracking} />}
-            <Map />
+            <button className="mapButton link">詳細情報</button>
+            <Map route={route} />
         </div>
     );
 }

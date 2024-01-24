@@ -1,16 +1,24 @@
-import { MapContainer, Marker, TileLayer } from "react-leaflet";
+import { MapContainer, Marker, TileLayer, Polyline } from "react-leaflet";
 import React, { useEffect, useState } from 'react';
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
+import markerIcon from "leaflet/dist/images/marker-icon.png";
+import markerShadow from "leaflet/dist/images/marker-shadow.png";
+import { LatLngTuple } from 'leaflet';
 
-// カスタムアイコンの設定
-const customIcon = new L.Icon({
-  iconUrl: '/marker_red_edg.png',
-  iconSize: [30, 36], // アイコンのサイズ
-  iconAnchor: [15, 18], // アイコンのアンカーポイント
+// Leafletアイコンの設定
+L.Icon.Default.mergeOptions({
+  iconUrl: markerIcon.src,
+  iconRetinaUrl: markerIcon2x.src,
+  shadowUrl: markerShadow.src,
 });
 
-const Map = () => {
+type MapProps = {
+  route?: LatLngTuple[];
+};
+
+const Map: React.FC<MapProps> = ({ route }) => {
   const [position, setPosition] = useState<[number, number] | null>(null);
   const [heading, setHeading] = useState(0); // 方向（デグリー）
 
@@ -62,12 +70,8 @@ const Map = () => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='© OpenStreetMap contributors'
       />
-      <Marker 
-        position={position} 
-        icon={customIcon} 
-        rotationAngle={heading} // Leaflet 2.0 以降でサポート
-        rotationOrigin="center" // マーカーの回転の原点
-      />
+      <Marker position={position} />
+      {route && <Polyline positions={route} color="red" />} {/* 経路の表示 */}
     </MapContainer>
   );
 };
