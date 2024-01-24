@@ -1,31 +1,13 @@
--- 著者テーブル作成
-CREATE TABLE authors (
-    id INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(60) NOT NULL,
-    PRIMARY KEY (id)
-);
+-- 古墳テーブル作成
+CREATE TABLE `tombs` (
+  `Name` VARCHAR(7) NOT NULL,
+  `URL` VARCHAR(50) NOT NULL,
+  `Address` VARCHAR(20) NOT NULL,
+  `Distance(m)` INT NOT NULL
+) DEFAULT CHARSET=utf8mb4;
 
--- 書籍テーブル作成
-CREATE TABLE books (
-    id INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(60) NOT NULL,
-    author INT NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (author) REFERENCES authors(id) ON DELETE CASCADE
-);
+-- 古墳データ登録
+INSERT INTO `tombs` VALUES ('仁徳天皇陵古墳','https://www.sakai-tcb.or.jp/spot/detail/126','堺市堺区大仙町',1317);
+INSERT INTO `tombs` VALUES ('履中天皇陵古墳','https://www.sakai-tcb.or.jp/spot/detail/160','堺市西区石津ヶ丘',817);
+INSERT INTO `tombs` VALUES ('ニサンザイ古墳','https://www.sakai-tcb.or.jp/spot/detail/122','堺市北区百舌鳥西之町3丁',696);
 
--- 著者データ登録
-INSERT INTO authors(name) VALUES('夏目 漱石');
-INSERT INTO authors(name) VALUES('森 鷗外');
-INSERT INTO authors(name) VALUES('樋口 一葉');
-
--- 書籍テーブル登録
-INSERT INTO books(name, author) VALUES('吾輩は猫である', 1);
-INSERT INTO books(name, author) VALUES('坊つちやん', 1);
-INSERT INTO books(name, author) VALUES('三四郎', 1);
-INSERT INTO books(name, author) VALUES('舞姫', 2);
-INSERT INTO books(name, author) VALUES('雁', 2);
-INSERT INTO books(name, author) VALUES('高瀬舟', 2);
-INSERT INTO books(name, author) VALUES('にごりえ', 3);
-INSERT INTO books(name, author) VALUES('十三夜', 3);
-INSERT INTO books(name, author) VALUES('たけくらべ', 3);
