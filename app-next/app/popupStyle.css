@@ -47,6 +47,14 @@
   cursor: pointer;
   font-size: 16px;
   box-shadow: 0 7px rgba(0, 0, 255);
+  display: inline-block;
+  margin-right: 10px;
+  width: 100px;
+}
+
+/*最後のボタンには右側のマージンを追加しない*/
+.popup-content button:last-child {
+  margin-right: 0;
 }
 
 /* ボタンにホバーエフェクトを追加 */

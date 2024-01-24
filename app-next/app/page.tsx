@@ -22,9 +22,9 @@ function MapPage() {
         // 追跡開始の処理
     };
 
-    const handleStopTracking = () => {
-        setTracking(false);
-        // 追跡停止の処理
+    const handleStopTracking = (stopTracking: boolean) => {
+        setTracking(!stopTracking); // stopTrackingがtrueなら追跡停止
+        closePopupStopConfirm(); // ポップアップを閉じる
     };
 
 
@@ -40,7 +40,7 @@ function MapPage() {
       // ポップアップを非表示
     };
 
-    const [isPopupStopConfirmOpen, setPopupStopConfirmOpen] = useState(false);  // 詳細情報ポップアップ表示の管理
+    const [isPopupStopConfirmOpen, setPopupStopConfirmOpen] = useState(false);  // 追跡停止確認ポップアップ表示の管理
 
     const openPopupStopConfirm = () => {
       setPopupStopConfirmOpen(true);
@@ -63,7 +63,7 @@ function MapPage() {
             <button className="mapButton mapView">経路表示</button>
             <button className="mapButton link" onClick={openPopupDetail}>古墳一覧</button>
             {isPopupDetailOpen && <PopupDetail onClose={closePopupDetail} />}
-            {isPopupStopConfirmOpen && <PopupStopConfirm onClose={() => {closePopupStopConfirm(); handleStopTracking(); }} />}
+            {isPopupStopConfirmOpen && <PopupStopConfirm onClose={handleStopTracking} />}
             <Map />
         </div>
     );
