@@ -15,11 +15,11 @@
     background-color: #2196F3;
     color: white;
     position: absolute;
-    bottom: 160px;
-    left: 50%;
-    font-size: 4em;
-    height: 120px;
-    width: 300px;
+    bottom: 40px;
+    left: 75%;
+    font-size: 1em;
+    height: 40px;
+    width: 110px;
     transform: translateX(calc(-50% - 155px));
     box-shadow: 0 7px rgba(0, 0, 255);
 }
@@ -30,18 +30,18 @@
 
 .mapButton.start:active {
     box-shadow: none;
-    bottom: 153px;
+    bottom: 35px;
 }
 
 .mapButton.stop {
     background-color: #f44336;
     color: white;
     position: absolute;
-    bottom: 160px;
-    left: 50%;
-    font-size: 4em;
-    height: 120px;
-    width: 300px;
+    bottom: 40px;
+    left: 75%;
+    font-size: 1em;
+    height: 40px;
+    width: 110px;
     transform: translateX(calc(-50% - 155px));
     box-shadow: 0 7px #5a1813;
 }
@@ -52,18 +52,18 @@
 
 .mapButton.stop:active {
     box-shadow: none;
-    bottom: 153px;
+    bottom: 35px;
 }
 
 .mapButton.info {
     background-color: #4CAF50;
     color: white;
     position: absolute;
-    bottom: 160px;
-    left: 50%;
-    font-size: 4em;
-    height: 120px;
-    width: 300px;
+    bottom: 40px;
+    left: 30%;
+    font-size: 1em;
+    height: 40px;
+    width: 110px;
     transform: translateX(calc(-50% + 155px));
     box-shadow: 0 7px #204921;
 }
@@ -74,7 +74,7 @@
 
 .mapButton.info:active {
     box-shadow: none;
-    bottom: 153px;
+    bottom: 35px;
 }
 
 .mapButton.mapView {
@@ -82,10 +82,10 @@
     color: black;
     position: absolute;
     bottom: 30px;
-    left: 50%;
-    font-size: 4em;
-    height: 120px;
-    width: 300px;
+    left: 53%;
+    font-size: 2em;
+    height: 90px;
+    width: 200px;
     transform: translateX(calc(-50% - 155px));
     box-shadow: 0 7px #5e5615;
 }
@@ -104,10 +104,10 @@
     color: white;
     position: absolute;
     bottom: 30px;
-    left: 50%;
-    font-size: 4em;
-    height: 120px;
-    width: 300px;
+    left: 48%;
+    font-size: 2em;
+    height: 90px;
+    width: 200px;
     transform: translateX(calc(-50% + 155px));
     box-shadow: 0 7px #3c0f44;
 }
